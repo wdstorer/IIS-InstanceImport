@@ -2,6 +2,7 @@
 #IIS-InstanceImport.ps1
 #Created by: Will Storer
 #Last-Modified: 5/21/2015
+#GitHub: https://github.com/wdstorer/IIS-InstanceImport.git
 #
 #THIS SCRIPT IMPORTS IIS INSTANCE INFORMATION INTO
 #THE SQL DATABASE
