@@ -1,6 +1,7 @@
 # IIS-InstanceImport
 Powershell solution for exporting IIS metadata into a MSSQL Server table
 
+Current compatible with Powershell V2 and IIS7
 
 
 INSTALLATION:
