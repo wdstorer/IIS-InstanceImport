@@ -1,7 +1,7 @@
 ########################################################
 #IIS-InstanceImport.ps1
 #Created by: Will Storer
-#Last-Modified: 5/2/2015
+#Last-Modified: 5/21/2015
 #
 #THIS SCRIPT IMPORTS IIS INSTANCE INFORMATION INTO
 #THE SQL DATABASE
@@ -13,7 +13,7 @@ param(
 )
 
 #CONFIGURATION PARAMS
-$dbHost = "172.18.73.12"
+$dbHost = "XXX.XXX.XXX.XXX"
 $dbDB = "NJOps"
 
 #FUNCTIONS
