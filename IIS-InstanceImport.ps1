@@ -5,7 +5,8 @@
 #
 #THIS SCRIPT IMPORTS IIS INSTANCE INFORMATION INTO
 #THE SQL DATABASE
-#
+#ADDAPTED FROM GETIISBINDINGSETC.PS1 
+#https://gallery.technet.microsoft.com/scriptcenter/Powershell-Get-IIS-3ad82491
 ########################################################
 param(
   [string]$siteName = ""
