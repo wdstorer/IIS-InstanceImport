@@ -31,15 +31,15 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[njo_sp_UpdateSite]
+	@environment VARCHAR(100),
 	@server VARCHAR(50),
 	@name VARCHAR(50),
+	@siteid INT,
+	@state VARCHAR(50),
 	@webroot VARCHAR(50),
 	@bindings VARCHAR(MAX),
 	@apppool VARCHAR(MAX),
-	@logdir VARCHAR(250),
-	@siteid INT,
-	@state VARCHAR(50),
-	@environment VARCHAR(100)
+	@logdir VARCHAR(250)
 AS
 BEGIN
 
@@ -50,12 +50,12 @@ DECLARE @testoutput VARCHAR(200)
 	IF EXISTS(SELECT TOP 1 appid FROM webapps WHERE server+name+CAST(siteid AS VARCHAR(10)) = @server+@name+CAST(@siteid AS VARCHAR(10)))
 	BEGIN
 		--print 'match found'
-		UPDATE dbo.webapps SET WebRoot=@webroot, Bindings=@bindings, AppPool=@apppool, logdir=@logdir, state=@state, environment=@environment, datechanged=GetDate() WHERE server+name+CAST(siteid AS VARCHAR(10)) = @server+@name+CAST(@siteid AS VARCHAR(10))
+		UPDATE dbo.webapps SET environment=@environment, state=@state, webroot=@webroot, bindings=@bindings, apppool=@apppool, logdir=@logdir, datechanged=GetDate() WHERE server+name+CAST(siteid AS VARCHAR(10)) = @server+@name+CAST(@siteid AS VARCHAR(10))
 	END
 	ELSE
 	BEGIN
 		--print 'no match'
-		INSERT INTO dbo.webapps(Server,Name,WebRoot,Bindings,AppPool,logdir,state,siteid, environment,datechanged) VALUES(@server,@name,@webroot,@bindings,@apppool,@logdir,@state,@siteid,@environment,GetDate())
+		INSERT INTO dbo.webapps(environment,server,name,state,siteid,webroot,bindings,apppool,logdir,datechanged) VALUES(@environment,@server,@name,@state,@siteid,@webroot,@bindings,@apppool,@logdir,GetDate())
 	END
 END
 GO
