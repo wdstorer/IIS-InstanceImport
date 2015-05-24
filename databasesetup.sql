@@ -38,7 +38,8 @@ CREATE PROCEDURE [dbo].[njo_sp_UpdateSite]
 	@apppool VARCHAR(MAX),
 	@logdir VARCHAR(250),
 	@siteid INT,
-	@state VARCHAR(50)
+	@state VARCHAR(50),
+	@environment VARCHAR(100)
 AS
 BEGIN
 
