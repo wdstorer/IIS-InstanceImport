@@ -8,15 +8,16 @@ GO
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='webapps' and xtype='U')
 	CREATE TABLE [dbo].[webapps](
 		[appid] [int] IDENTITY(1,1) NOT NULL,
+		[environment] [varchar](100) NULL,
 		[server] [varchar](50) NULL,
 		[name] [varchar](50) NULL,
+		[siteid] [int] NULL,
+		[state] [varchar](50) NULL,
 		[webroot] [varchar](100) NULL,
 		[bindings] [varchar](max) NULL,
 		[apppool] [varchar](max) NULL,
 		[logdir] [varchar](100) NULL,
-		[datechanged] [datetime] NULL,
-		[siteid] [int] NULL,
-		[state] [varchar](50) NULL
+		[datechanged] [datetime] NULL
 	) ON [PRIMARY]
 go
 
