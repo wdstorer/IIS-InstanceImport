@@ -50,12 +50,12 @@ DECLARE @testoutput VARCHAR(200)
 	IF EXISTS(SELECT TOP 1 appid FROM webapps WHERE server+name+CAST(siteid AS VARCHAR(10)) = @server+@name+CAST(@siteid AS VARCHAR(10)))
 	BEGIN
 		--print 'match found'
-		UPDATE dbo.webapps SET WebRoot=@webroot, Bindings=@bindings, AppPool=@apppool, logdir=@logdir, state=@state, datechanged=GetDate() WHERE server+name+CAST(siteid AS VARCHAR(10)) = @server+@name+CAST(@siteid AS VARCHAR(10))
+		UPDATE dbo.webapps SET WebRoot=@webroot, Bindings=@bindings, AppPool=@apppool, logdir=@logdir, state=@state, environment=@environment, datechanged=GetDate() WHERE server+name+CAST(siteid AS VARCHAR(10)) = @server+@name+CAST(@siteid AS VARCHAR(10))
 	END
 	ELSE
 	BEGIN
 		--print 'no match'
-		INSERT INTO dbo.webapps(Server,Name,WebRoot,Bindings,AppPool,logdir,state,siteid,datechanged) VALUES(@server,@name,@webroot,@bindings,@apppool,@logdir,@state,@siteid,GetDate())
+		INSERT INTO dbo.webapps(Server,Name,WebRoot,Bindings,AppPool,logdir,state,siteid, environment,datechanged) VALUES(@server,@name,@webroot,@bindings,@apppool,@logdir,@state,@siteid,@environment,GetDate())
 	END
 END
 GO
