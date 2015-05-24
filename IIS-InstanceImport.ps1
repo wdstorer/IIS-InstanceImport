@@ -86,7 +86,7 @@ else
         $apppools = (Get-WebApplication -Site $item.Name | select -expa applicationPool -unique) -join "|"
         #write-output $bind
         #write-output $item
-        $sql = "exec [dbo].[njo_sp_UpdateSite] '$($serverName)','$($item.Name)','$($item.PhysicalPath)','$($bind)','$($apppools)','','$($item.ID)','$($item.State)','$environment'"
+        $sql = "exec [dbo].[njo_sp_UpdateSite] '$($environment)','$($serverName)','$($item.Name)','$($item.ID)','$($item.State)','$($item.PhysicalPath)','$($bind)','$($apppools)',''"
         $command.commandtext = $sql
         $result = $command.ExecuteNonQuery()
         #write-output $apppools
