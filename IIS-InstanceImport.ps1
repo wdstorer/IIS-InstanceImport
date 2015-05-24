@@ -16,6 +16,7 @@ param(
 #CONFIGURATION PARAMS
 $dbHost = "XXX.XXX.XXX.XXX"
 $dbDB = "NJOps"
+$environment = "QA"
 
 #FUNCTIONS
 function installWebAdminModule()
@@ -67,6 +68,7 @@ $serverName = [System.Net.Dns]::GetHostName()
 
 if ($siteName -ne "")
 {
+    #SINGLE INSTANCE UPDATE NOT IMPLEMENTED YET....
     $itemParam = get-item $siteName | select Name, PhysicalPath, Bindings
     $bind = $itemParam | select -expa bindings | select -expa collection | select -expa bindinginformation 
     write-output $itemParam."Name"
@@ -84,7 +86,7 @@ else
         $apppools = (Get-WebApplication -Site $item.Name | select -expa applicationPool -unique) -join "|"
         #write-output $bind
         #write-output $item
-        $sql = "exec [dbo].[njo_sp_UpdateSite] '$($serverName)','$($item.Name)','$($item.PhysicalPath)','$($bind)','$($apppools)','','$($item.ID)','$($item.State)'"
+        $sql = "exec [dbo].[njo_sp_UpdateSite] '$($serverName)','$($item.Name)','$($item.PhysicalPath)','$($bind)','$($apppools)','','$($item.ID)','$($item.State)','$environment'"
         $command.commandtext = $sql
         $result = $command.ExecuteNonQuery()
         #write-output $apppools
