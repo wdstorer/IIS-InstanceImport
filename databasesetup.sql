@@ -33,10 +33,10 @@ GO
 CREATE PROCEDURE [dbo].[njo_sp_UpdateSite]
 	@environment VARCHAR(100),
 	@server VARCHAR(50),
-	@name VARCHAR(100),
+	@name VARCHAR(50),
 	@siteid INT,
-	@state VARCHAR(100),
-	@webroot VARCHAR(250),
+	@state VARCHAR(50),
+	@webroot VARCHAR(100),
 	@bindings VARCHAR(MAX),
 	@apppool VARCHAR(MAX),
 	@logdir VARCHAR(250)
